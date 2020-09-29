@@ -2,7 +2,7 @@ FROM php:7.4-fpm
 
 # Install the PHP extensions we need
 
-RUN apt-get clean -y \
+RUN apt-get clean -y && \
 apt-get update && \
 apt-get install -y --no-install-recommends \
     curl \
