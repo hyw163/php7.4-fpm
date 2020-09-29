@@ -1,9 +1,9 @@
 FROM php:7.4-fpm
 
-RUN apt-get clean -y 
 # Install the PHP extensions we need
 
-RUN apt-get update && \
+RUN apt-get clean -y \
+apt-get update && \
 apt-get install -y --no-install-recommends \
     curl \
     git \
@@ -26,14 +26,8 @@ apt-get install -y --no-install-recommends \
     pecl install mcrypt-1.0.3 && \
     docker-php-ext-enable bcmath zip pdo_mysql mcrypt sockets
 
-# install memcached
-RUN pecl install memcached
-
-# install xdebug
-RUN pecl install xdebug
-
-# install redis
-RUN pecl install redis
+# install memcached, xdebug, redis
+RUN pecl install memcached xdebug redis
 
 # install composer
 RUN php -r "readfile('https://getcomposer.org/installer');" > composer-setup.php && \
